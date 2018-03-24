@@ -3,16 +3,32 @@ package br.faustikle.desafio.api.domain.model.proposta;
 import br.faustikle.desafio.api.domain.model.cliente.Cliente;
 import br.faustikle.desafio.api.domain.model.usuario.Usuario;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+@Entity
 public class PropostaDeCredito {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
+    @NotNull
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_captador_id")
     private Usuario captador;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private StatusProposta status;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(nullable = true)
     private Resultado resultado;
 
     public PropostaDeCredito(Cliente cliente, Usuario captador) {

@@ -2,12 +2,20 @@ package br.faustikle.desafio.api.domain.model.proposta;
 
 import br.faustikle.desafio.api.domain.model.usuario.Usuario;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+@Entity
 public class Resultado {
 
+    @NotNull
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_analisador_id")
     private Usuario analisador;
 
     private String motivo;
 
+    @Embedded
     private Credito credito;
 
     private Resultado(Usuario analisador, Credito credito) {
