@@ -60,6 +60,10 @@ public class PropostaDeCredito {
         this.status = StatusProposta.NEGADA;
     }
 
+    public boolean estaEmAnalise() {
+        return status == StatusProposta.EM_ANALISE;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }

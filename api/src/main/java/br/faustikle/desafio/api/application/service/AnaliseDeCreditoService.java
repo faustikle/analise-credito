@@ -1,5 +1,6 @@
 package br.faustikle.desafio.api.application.service;
 
+import br.faustikle.desafio.api.domain.exception.ClienteComPropostaEmAnaliseException;
 import br.faustikle.desafio.api.domain.exception.PropostaDeCreditoNaoEncontradoException;
 import br.faustikle.desafio.api.domain.model.cliente.Cliente;
 import br.faustikle.desafio.api.domain.model.proposta.Credito;
@@ -36,6 +37,11 @@ public class AnaliseDeCreditoService implements AnaliseDeCreditoServiceInterface
     @Override
     public PropostaDeCredito solicitar(Long clienteId, Usuario captador) {
         Cliente cliente = clienteService.obter(clienteId);
+
+        if (cliente.possuiPropostasEmAnalise()) {
+            throw new ClienteComPropostaEmAnaliseException();
+        }
+
         PropostaDeCredito proposta = new PropostaDeCredito(cliente, captador);
 
         return propostaDeCreditoRepository.save(proposta);

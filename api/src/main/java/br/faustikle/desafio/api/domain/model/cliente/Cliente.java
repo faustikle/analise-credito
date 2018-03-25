@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity(name = "clientes")
 public class Cliente {
@@ -38,6 +39,19 @@ public class Cliente {
         this.dadoFinanceiro = dadoFinanceiro;
         this.propostas = new ArrayList<>();
         this.data = LocalDateTime.now();
+    }
+
+    public boolean possuiPropostasEmAnalise() {
+        if (propostas.isEmpty()) {
+            return false;
+        }
+
+        List<PropostaDeCredito> propostasEmAnalise = propostas.stream()
+                .filter(PropostaDeCredito::estaEmAnalise)
+                .collect(Collectors.toList());
+
+
+        return !propostasEmAnalise.isEmpty();
     }
 
     public Long getId() {

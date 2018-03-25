@@ -1,9 +1,6 @@
 package br.faustikle.desafio.api.application.exception;
 
-import br.faustikle.desafio.api.domain.exception.AlteracaoNaoPermitidaException;
-import br.faustikle.desafio.api.domain.exception.ClienteNaoEncontradoException;
-import br.faustikle.desafio.api.domain.exception.EntidadeEncontradaException;
-import br.faustikle.desafio.api.domain.exception.PropostaJaAnalisadaException;
+import br.faustikle.desafio.api.domain.exception.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +32,13 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     @ExceptionHandler({ PropostaJaAnalisadaException.class })
     public ResponseEntity<Object> handlePropostaJaAnalisadaException(PropostaJaAnalisadaException exception,
                                                                        WebRequest request) {
+        return handleExceptionInternal(exception, obterMensagemDeErro(exception.getMessage()),
+                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler({ ClienteComPropostaEmAnaliseException.class })
+    public ResponseEntity<Object> handleClienteComPropostaEmAnaliseException(
+            ClienteComPropostaEmAnaliseException exception, WebRequest request) {
         return handleExceptionInternal(exception, obterMensagemDeErro(exception.getMessage()),
                 new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
