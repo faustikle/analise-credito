@@ -1,5 +1,6 @@
 package br.faustikle.desafio.api.domain.model.proposta;
 
+import br.faustikle.desafio.api.domain.exception.PropostaJaAnalisadaException;
 import br.faustikle.desafio.api.domain.model.cliente.Cliente;
 import br.faustikle.desafio.api.domain.model.usuario.Usuario;
 
@@ -46,11 +47,15 @@ public class PropostaDeCredito {
     }
 
     public void aprovar(Usuario analista, Credito credito) {
+        verificarSePropostaJaFoiAnalisada();
+
         this.resultado = Resultado.aprovado(analista, credito);
         this.status = StatusProposta.APROVADA;
     }
 
     public void negar(Usuario analista, String motivo) {
+        verificarSePropostaJaFoiAnalisada();
+
         this.resultado = Resultado.negado(analista, motivo);
         this.status = StatusProposta.NEGADA;
     }
@@ -73,5 +78,11 @@ public class PropostaDeCredito {
 
     public Long getId() {
         return id;
+    }
+
+    private void verificarSePropostaJaFoiAnalisada() throws PropostaJaAnalisadaException {
+        if (resultado != null) {
+            throw new PropostaJaAnalisadaException();
+        }
     }
 }
