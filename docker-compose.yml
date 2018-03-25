@@ -1,13 +1,18 @@
-version: '3'
+version: '3.1'
 services:
     api:
+        container_name: desafio-analise-credito-api
         build:
             context: api/
             args:
                 - API_VERSION=${API_VERSION}
         ports:
             - '3000:8080'
-        environment:
-            DATABASE_HOST: desafio-analise-credito.ccgfjjzzdpv0.us-west-2.rds.amazonaws.com
-            DATABASE_USER: desafio
-            DATABASE_PASSWORD: 12345678
+    app:
+       container_name: desafio-analise-credito-app
+       image: nginx:1.13
+       volumes:
+         - ./client/dist:/usr/share/nginx/html
+         - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
+       ports:
+          - "80:80"
