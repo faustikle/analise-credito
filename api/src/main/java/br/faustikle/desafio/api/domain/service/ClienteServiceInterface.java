@@ -11,7 +11,7 @@ public interface ClienteServiceInterface {
 
     public Cliente cadastrar(Cliente cliente);
 
-    public Cliente atualizar(Cliente cliente);
+    public Cliente atualizar(Long id, Cliente cliente);
 
     public Cliente obter(Long clienteId);
 

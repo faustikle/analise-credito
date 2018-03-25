@@ -1,5 +1,6 @@
 package br.faustikle.desafio.api.application.exception;
 
+import br.faustikle.desafio.api.domain.exception.AlteracaoNaoPermitidaException;
 import br.faustikle.desafio.api.domain.exception.ClienteNaoEncontradoException;
 import br.faustikle.desafio.api.domain.exception.EntidadeEncontradaException;
 import org.springframework.http.HttpHeaders;
@@ -20,6 +21,13 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
                                                                          WebRequest request) {
         return handleExceptionInternal(exception, obterMensagemDeErro(exception.getMessage()),
                 new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler({ AlteracaoNaoPermitidaException.class })
+    public ResponseEntity<Object> handleAlteracaoNaoPermitidaException(AlteracaoNaoPermitidaException exception,
+                                                                       WebRequest request) {
+        return handleExceptionInternal(exception, obterMensagemDeErro(exception.getMessage()),
+                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
     private HashMap<String, String> obterMensagemDeErro(String mensagem) {

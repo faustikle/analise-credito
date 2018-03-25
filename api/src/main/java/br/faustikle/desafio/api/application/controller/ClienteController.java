@@ -20,6 +20,11 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
+    @GetMapping("/{id}")
+    public Cliente obter(@PathVariable Long id) {
+        return clienteService.obter(id);
+    }
+
     @GetMapping
     public Page<Cliente> listar(@RequestParam(value = "cpf", required=false) String cpf, Pageable pageable) {
         if (cpf == null) {
@@ -34,5 +39,10 @@ public class ClienteController {
         Cliente novoCliente = clienteService.cadastrar(cliente);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(novoCliente);
+    }
+
+    @PutMapping("/{id}")
+    public Cliente atualizar(@PathVariable Long id, @RequestBody Cliente cliente) {
+        return clienteService.atualizar(id, cliente);
     }
 }

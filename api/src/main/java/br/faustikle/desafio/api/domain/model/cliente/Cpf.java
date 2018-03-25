@@ -21,4 +21,8 @@ public class Cpf {
     public Cpf(String numero) {
         this.numero = numero;
     }
+
+    public boolean equals(Cpf cpf) {
+        return cpf.getNumero().equals(numero);
+    }
 }

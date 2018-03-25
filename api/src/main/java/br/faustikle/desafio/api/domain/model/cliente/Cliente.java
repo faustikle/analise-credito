@@ -48,6 +48,22 @@ public class Cliente {
         return dadoPessoal;
     }
 
+    public void setDadoPessoal(DadoPessoal dadoPessoal) {
+        this.dadoPessoal = dadoPessoal;
+    }
+
+    public void setDadoFinanceiro(DadoFinanceiro dadoFinanceiro) {
+        this.dadoFinanceiro = dadoFinanceiro;
+    }
+
+    public void setPropostas(List<PropostaDeCredito> propostas) {
+        this.propostas = propostas;
+    }
+
+    public void setData(LocalDateTime data) {
+        this.data = data;
+    }
+
     public DadoFinanceiro getDadoFinanceiro() {
         return dadoFinanceiro;
     }
