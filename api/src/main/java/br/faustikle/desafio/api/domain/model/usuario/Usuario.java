@@ -51,8 +51,16 @@ public class Usuario {
         return id;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public String getNome() {
         return nome;
+    }
+
+    public String getSenha() {
+        return senha;
     }
 
     public Papel getPapel() {

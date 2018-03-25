@@ -2,16 +2,13 @@ package br.faustikle.desafio.api.application.controller;
 
 import br.faustikle.desafio.api.application.service.ClienteService;
 import br.faustikle.desafio.api.domain.model.cliente.Cliente;
-import br.faustikle.desafio.api.domain.model.proposta.PropostaDeCredito;
-import br.faustikle.desafio.api.domain.service.ClienteServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/clientes")
@@ -26,6 +23,7 @@ public class ClienteController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('CAPTADOR_DE_PROPOSTA')")
     public Page<Cliente> listar(@RequestParam(value = "cpf", required=false) String cpf, Pageable pageable) {
         if (cpf == null) {
             return clienteService.listar(pageable);
@@ -35,6 +33,7 @@ public class ClienteController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('CAPTADOR_DE_PROPOSTA')")
     public ResponseEntity<Cliente> cadastrar(@RequestBody Cliente cliente) {
         Cliente novoCliente = clienteService.cadastrar(cliente);
 
@@ -42,6 +41,7 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('CAPTADOR_DE_PROPOSTA')")
     public Cliente atualizar(@PathVariable Long id, @RequestBody Cliente cliente) {
         return clienteService.atualizar(id, cliente);
     }

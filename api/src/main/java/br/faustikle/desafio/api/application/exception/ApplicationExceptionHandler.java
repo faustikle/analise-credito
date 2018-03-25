@@ -6,6 +6,7 @@ import br.faustikle.desafio.api.domain.exception.EntidadeEncontradaException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -28,6 +29,13 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
                                                                        WebRequest request) {
         return handleExceptionInternal(exception, obterMensagemDeErro(exception.getMessage()),
                 new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler({ BadCredentialsException.class })
+    public ResponseEntity<Object> handleBadCredentialsException(BadCredentialsException exception,
+                                                                       WebRequest request) {
+        return handleExceptionInternal(exception, obterMensagemDeErro("Usuario ou senha inválida."),
+                new HttpHeaders(), HttpStatus.UNAUTHORIZED, request);
     }
 
     private HashMap<String, String> obterMensagemDeErro(String mensagem) {
