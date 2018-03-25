@@ -5,7 +5,7 @@
 
 	<groupId>br.faustikle</groupId>
 	<artifactId>desafio-analise-credito</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>desafio-analise-credito</name>
@@ -81,8 +81,27 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.0</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<repository>faustikle/desafio-analise-credito</repository>
+					<tag>${project.version}</tag>
+					<buildArgs>
+						<API_VERSION>${project.version}</API_VERSION>
+					</buildArgs>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-
-
 </project>

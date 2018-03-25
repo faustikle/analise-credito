@@ -1,0 +1,13 @@
+version: '3'
+services:
+    api:
+        build:
+            context: api/
+            args:
+                - API_VERSION=${API_VERSION}
+        ports:
+            - '3000:8080'
+        environment:
+            DATABASE_HOST: desafio-analise-credito.ccgfjjzzdpv0.us-west-2.rds.amazonaws.com
+            DATABASE_USER: desafio
+            DATABASE_PASSWORD: 12345678
