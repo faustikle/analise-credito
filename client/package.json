@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "desafio-analise-credito-app",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -8,7 +8,9 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:watch": "ng build -w",
+    "build:prod": "ng build -t production -e prod"
   },
   "private": true,
   "dependencies": {
@@ -23,10 +25,16 @@
     "@angular/router": "^5.2.0",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.6",
-    "zone.js": "^0.8.19"
+    "zone.js": "^0.8.19",
+    "@fortawesome/fontawesome-free-regular": "^5.0.6",
+    "angular2-jwt": "^0.2.3",
+    "angular2-text-mask": "^8.0.4",
+    "bootstrap": "^4.0.0-beta.2",
+    "font-awesome": "^4.7.0",
+    "primeng": "^5.0.2"
   },
   "devDependencies": {
-    "@angular/cli": "~1.7.3",
+    "@angular/cli": "1.6.5",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
     "@types/jasmine": "~2.8.3",
@@ -37,6 +45,7 @@
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",
     "karma-chrome-launcher": "~2.2.0",
+    "karma-cli": "~1.0.1",
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
