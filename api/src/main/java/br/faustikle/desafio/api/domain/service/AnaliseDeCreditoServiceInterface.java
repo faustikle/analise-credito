@@ -5,11 +5,15 @@ import br.faustikle.desafio.api.domain.model.proposta.Credito;
 import br.faustikle.desafio.api.domain.model.proposta.PropostaDeCredito;
 import br.faustikle.desafio.api.domain.model.usuario.Usuario;
 
+import java.math.BigDecimal;
+
 public interface AnaliseDeCreditoServiceInterface {
 
-    public PropostaDeCredito solicitar(Cliente cliente, Usuario captador);
+    public PropostaDeCredito obter(Long id);
 
-    public PropostaDeCredito aprovar(PropostaDeCredito proposta, Usuario analista, Credito credito);
+    public PropostaDeCredito solicitar(Long clienteId, Usuario captador);
 
-    public PropostaDeCredito negar(PropostaDeCredito proposta, Usuario analista, String motivo);
+    public PropostaDeCredito aprovar(Long propostaId, Usuario analista, BigDecimal credito);
+
+    public PropostaDeCredito negar(Long propostaId, Usuario analista, String motivo);
 }

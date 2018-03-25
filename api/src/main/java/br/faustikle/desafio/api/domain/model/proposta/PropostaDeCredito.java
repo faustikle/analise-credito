@@ -5,8 +5,9 @@ import br.faustikle.desafio.api.domain.model.usuario.Usuario;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "propostas_de_credito")
 public class PropostaDeCredito {
 
     @Id
@@ -19,7 +20,7 @@ public class PropostaDeCredito {
     private Cliente cliente;
 
     @NotNull
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_captador_id")
     private Usuario captador;
 
@@ -27,14 +28,21 @@ public class PropostaDeCredito {
     @Enumerated(EnumType.STRING)
     private StatusProposta status;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(nullable = true)
     private Resultado resultado;
+
+    @NotNull
+    private LocalDateTime data;
+
+    private PropostaDeCredito() {
+    }
 
     public PropostaDeCredito(Cliente cliente, Usuario captador) {
         this.cliente = cliente;
         this.captador = captador;
         this.status = StatusProposta.EM_ANALISE;
+        this.data = LocalDateTime.now();
     }
 
     public void aprovar(Usuario analista, Credito credito) {
@@ -45,5 +53,25 @@ public class PropostaDeCredito {
     public void negar(Usuario analista, String motivo) {
         this.resultado = Resultado.negado(analista, motivo);
         this.status = StatusProposta.NEGADA;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public Usuario getCaptador() {
+        return captador;
+    }
+
+    public StatusProposta getStatus() {
+        return status;
+    }
+
+    public Resultado getResultado() {
+        return resultado;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

@@ -17,6 +17,9 @@ public class Credito {
     @Column(nullable = true)
     private BigDecimal valor;
 
+    private Credito() {
+    }
+
     public Credito(BigDecimal valor) {
         this.valor = valor;
     }
