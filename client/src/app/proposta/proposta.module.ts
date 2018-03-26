@@ -7,6 +7,7 @@ import { ResultadoComponent } from './resultado/resultado.component';
 import { PropostaRoutingModule } from './proposta-routing.module';
 import { PropostaComponent } from './proposta.component';
 import { SharedModule } from '../shared/shared.module';
+import { PropostaService } from './service/proposta.service';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     PropostaRoutingModule
   ],
+  providers: [PropostaService],
   declarations: [PropostaComponent, CadastroComponent, ResultadoComponent]
 })
 export class PropostaModule { }
