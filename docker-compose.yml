@@ -2,7 +2,7 @@ version: '3.1'
 services:
     api:
         container_name: desafio-analise-credito-api
-        image: faustikle/desafio-analise-credito:1.0.1
+        image: faustikle/desafio-analise-credito:1.0.2
         ports:
             - '3000:8080'
     client:
