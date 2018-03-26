@@ -2,8 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CardModule} from 'primeng/card';
-import { ButtonModule} from 'primeng/button';
-import { DropdownModule, InputTextModule } from 'primeng/primeng';
+import { ButtonModule } from 'primeng/button';
+import { CalendarModule, DropdownModule, InputTextModule } from 'primeng/primeng';
+import { TextMaskModule } from 'angular2-text-mask';
+import { ClienteService } from './service/cliente.service';
+
 
 @NgModule({
   imports: [
@@ -14,6 +17,8 @@ import { DropdownModule, InputTextModule } from 'primeng/primeng';
     ButtonModule,
     InputTextModule,
     DropdownModule,
+    CalendarModule,
+    TextMaskModule,
   ],
   exports: [
     FormsModule,
@@ -23,6 +28,7 @@ import { DropdownModule, InputTextModule } from 'primeng/primeng';
     InputTextModule,
     DropdownModule,
   ],
+  providers: [ClienteService],
   declarations: []
 })
 export class SharedModule { }

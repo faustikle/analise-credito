@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {PropostaComponent} from './proposta.component';
-import {PropostaRoutes} from './proposta-routes.enum';
-import {CadastroComponent} from './cadastro/cadastro.component';
-import {ResultadoComponent} from './resultado/resultado.component';
+import { PropostaComponent } from './proposta.component';
+import { PropostaRoutesEnum } from './proposta-routes.enum';
+import { CadastroComponent } from './cadastro/cadastro.component';
+import { ResultadoComponent } from './resultado/resultado.component';
 
 const routes: Routes = [
   {
@@ -12,11 +12,11 @@ const routes: Routes = [
     component: PropostaComponent,
     children: [
       {
-        path: PropostaRoutes.CADASTRO,
+        path: PropostaRoutesEnum.CADASTRO,
         component: CadastroComponent,
       },
       {
-        path: PropostaRoutes.RESULTADO,
+        path: PropostaRoutesEnum.RESULTADO,
         component: ResultadoComponent,
       }
     ]

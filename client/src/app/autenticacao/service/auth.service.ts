@@ -52,12 +52,12 @@ export class AuthService {
     this.storage.setItem('userrole', payload.papel);
   }
 
-  private decodeToken(token: string): any {
-    return this.jwtHelper.decodeToken(token);
+  getToken(): string {
+    return this.storage.getItem('token');
   }
 
-  private getToken(): string {
-    return this.storage.getItem('token');
+  private decodeToken(token: string): any {
+    return this.jwtHelper.decodeToken(token);
   }
 
   private limparSessionStorage(): void {

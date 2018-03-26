@@ -1,96 +1,110 @@
-<div class="card card-proposta">
-  <div class="ui-g-12">
-    <div class="card-body">
-      Solicite, gentilmente, os dados pessoais e de endereço do cliente.
+<form [formGroup]="propostaForm" (submit)="cadastrar()">
+  <div class="card card-proposta">
+    <div class="ui-g-12">
+      <div class="card-body">
+        <div class="alert alert-info" role="alert">
+          <strong>Cadastro de Proposta.</strong><br>Solicite, gentilmente, os dados pessoais e de endereço do cliente.
+        </div>
+      <button pButton type="button" (click)="navegarTelaInicial()" label="Voltar"></button>
+      </div>
+
+    </div>
+
+    <div class="ui-g-12">
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup-addon">
+          <label for="cpf">CPF</label>
+          <input pInputText [textMask]="{mask: mascaraCpf}" type="text" id="cpf" formControlName="cpf"/>
+        </div>
+      </div>
+
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup-addon">
+          <label for="nome">Nome</label>
+          <input pInputText type="text" id="nome" formControlName="nome"/>
+        </div>
+      </div>
+
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup-addon">
+          <label for="genero">Gênero</label>
+          <p-dropdown id="genero" [style]="{'width': '100%', 'height': '34px'}" [options]="generos"
+                      placeholder="Selecione" optionLabel="label" [showClear]="true" formControlName="genero"></p-dropdown>
+        </div>
+      </div>
+
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup-addon">
+          <label for="dataNascimento">Data de nascimento</label>
+          <p-calendar id="dataNascimento" dateFormat="yy/mm/dd" dataType="string"
+                      [style]="{'width': '100%', 'height': '34px'}" formControlName="dataNascimento"
+                      [locale]="configPtBrCalendar" [showButtonBar]="true" [yearNavigator]="true" yearRange="1868:2018"></p-calendar>
+        </div>
+      </div>
+
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup-addon">
+          <label for="profissao">Profissão</label>
+          <input pInputText type="text" id="profissao" formControlName="profissao"/>
+        </div>
+      </div>
+
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup-addon">
+          <label for="rendaMensal">Renda Mensal</label>
+          <input pInputText type="text" id="rendaMensal" formControlName="rendaMensal"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui-g-12">
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup-addon">
+          <label for="cep">CEP</label>
+          <input pInputText type="text" [textMask]="{mask: mascaraCep}" id="cep" formControlName="cep"/>
+        </div>
+      </div>
+
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup-addon">
+          <label for="cidade">Cidade</label>
+          <input pInputText type="text" id="cidade" formControlName="cidade"/>
+        </div>
+      </div>
+
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup-addon">
+          <label for="estado">Estado</label>
+          <input pInputText type="text" [textMask]="{mask: mascaraUF}" id="estado" formControlName="estado"/>
+        </div>
+      </div>
+
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup-addon">
+          <label for="logradouro">Logradouro</label>
+          <input pInputText type="text" id="logradouro" formControlName="logradouro"/>
+        </div>
+      </div>
+
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup-addon">
+          <label for="numero">Número</label>
+          <input pInputText type="text" id="numero" formControlName="numero"/>
+        </div>
+      </div>
+
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup-addon">
+          <label for="telefone">DDD + Telefone </label>
+          <input pInputText type="text" [textMask]="{mask: mascaraTelefone}" id="telefone" formControlName="telefone"/>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="ui-g-12">
-    <div class="ui-g-12 ui-md-4">
-      <div class="ui-inputgroup-addon">
-        <label for="cpf">CPF</label>
-        <input pInputText type="text" id="cpf"/>
-      </div>
-    </div>
-
-    <div class="ui-g-12 ui-md-4">
-      <div class="ui-inputgroup-addon">
-        <label for="nome">Nome</label>
-        <input pInputText type="text" id="nome"/>
-      </div>
-    </div>
-
-    <div class="ui-g-12 ui-md-4">
-      <div class="ui-inputgroup-addon">
-        <label for="genero">Gênero</label>
-        <p-dropdown id="genero" [style]="{'width': '100%', 'height': '34px'}" [options]="generos"
-                    placeholder="Selecione" optionLabel="label" [showClear]="true"></p-dropdown>
-      </div>
-    </div>
-
-    <div class="ui-g-12 ui-md-4">
-      <div class="ui-inputgroup-addon">
-        <label for="dataNascimento">Data de nascimento</label>
-        <input pInputText type="text" id="dataNascimento"/>
-      </div>
-    </div>
-
-    <div class="ui-g-12 ui-md-4">
-      <div class="ui-inputgroup-addon">
-        <label for="profissao">Profissão</label>
-        <input pInputText type="text" id="profissao"/>
-      </div>
-    </div>
-
-    <div class="ui-g-12 ui-md-4">
-      <div class="ui-inputgroup-addon">
-        <label for="rendaMensal">Renda Mensal</label>
-        <input pInputText type="text" id="rendaMensal"/>
-      </div>
+  <div class="card card-proposta">
+    <div class="ui-g-12">
+      <button pButton type="submit" [label]=" loading ? 'Cadastrando' : 'Cadastrar'" [disabled]="loading" class="ui-button-success"></button>
     </div>
   </div>
-
-  <div class="ui-g-12">
-    <div class="ui-g-12 ui-md-4">
-      <div class="ui-inputgroup-addon">
-        <label for="cep">CEP</label>
-        <input pInputText type="text" id="cep"/>
-      </div>
-    </div>
-
-    <div class="ui-g-12 ui-md-4">
-      <div class="ui-inputgroup-addon">
-        <label for="cidade">Cidade</label>
-        <input pInputText type="text" id="cidade"/>
-      </div>
-    </div>
-
-    <div class="ui-g-12 ui-md-4">
-      <div class="ui-inputgroup-addon">
-        <label for="estado">Estado</label>
-        <input pInputText type="text" id="estado"/>
-      </div>
-    </div>
-
-    <div class="ui-g-12 ui-md-4">
-      <div class="ui-inputgroup-addon">
-        <label for="logradouro">Logradouro</label>
-        <input pInputText type="text" id="logradouro"/>
-      </div>
-    </div>
-
-    <div class="ui-g-12 ui-md-4">
-      <div class="ui-inputgroup-addon">
-        <label for="numero">Número</label>
-        <input pInputText type="text" id="numero"/>
-      </div>
-    </div>
-
-    <div class="ui-g-12 ui-md-4">
-      <div class="ui-inputgroup-addon">
-        <label for="telefone">DDD + Telefone </label>
-        <input pInputText type="text" id="telefone"/>
-      </div>
-    </div>
-  </div>
-</div>
+</form>

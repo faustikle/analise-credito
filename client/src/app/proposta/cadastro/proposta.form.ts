@@ -1,6 +1,6 @@
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Proposta} from '../model/proposta';
-import {Cliente} from '../../shared/model/cliente/cliente';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Proposta } from '../model/proposta';
+import { Cliente } from '../../shared/model/cliente/cliente';
 
 export class PropostaForm extends FormGroup {
   constructor() {
@@ -64,20 +64,20 @@ export class PropostaForm extends FormGroup {
     return {
       dadoPessoal: {
         nome: this.get('nome').value,
+        telefone: this.get('telefone').value.replace(new RegExp(/\D/, 'g'), ''),
+        dataDeNascimento: this.get('dataNascimento').value.replace('/', '-'),
         cpf: {
-          numero: this.get('cpf').value,
+          numero: this.get('cpf').value.replace(new RegExp(/\D/, 'g'), ''),
         },
         endereco: {
-          cep: this.get('cep').value,
+          cep: this.get('cep').value.replace(new RegExp(/\D/, 'g'), ''),
           cidade: this.get('cidade').value,
           estado: this.get('estado').value,
           logradouro: this.get('logradouro').value,
           numero: this.get('numero').value
         },
-        genero: this.get('genero').value,
+        genero: this.get('genero').value.value,
       },
-      telefone: this.get('telefone').value,
-      dataDeNascimento: this.get('dataNascimento').value,
       dadoFinanceiro: {
         profissao: this.get('profissao').value,
         rendaMensal: this.get('rendaMensal').value,
