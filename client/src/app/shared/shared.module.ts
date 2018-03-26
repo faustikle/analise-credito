@@ -27,6 +27,8 @@ import { ClienteService } from './service/cliente.service';
     ButtonModule,
     InputTextModule,
     DropdownModule,
+    CalendarModule,
+    TextMaskModule
   ],
   providers: [ClienteService],
   declarations: []

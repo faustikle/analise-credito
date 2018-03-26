@@ -65,7 +65,7 @@ export class PropostaForm extends FormGroup {
       dadoPessoal: {
         nome: this.get('nome').value,
         telefone: this.get('telefone').value.replace(new RegExp(/\D/, 'g'), ''),
-        dataDeNascimento: this.get('dataNascimento').value.replace('/', '-'),
+        dataDeNascimento: this.get('dataNascimento').value.replace(new RegExp(/\//, 'g'), '-'),
         cpf: {
           numero: this.get('cpf').value.replace(new RegExp(/\D/, 'g'), ''),
         },
