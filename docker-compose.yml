@@ -2,14 +2,11 @@ version: '3.1'
 services:
     api:
         container_name: desafio-analise-credito-api
-        build:
-            context: api/
-            args:
-                - API_VERSION=${API_VERSION}
+        image: faustikle/desafio-analise-credito:1.0.0
         ports:
             - '3000:8080'
-    app:
-       container_name: desafio-analise-credito-app
+    client:
+       container_name: desafio-analise-credito-client
        image: nginx:1.13
        volumes:
          - ./client/dist:/usr/share/nginx/html

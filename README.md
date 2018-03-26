@@ -7,21 +7,18 @@ O banco de dados utilizado foi o [MariaDB](https://mariadb.org/),  onde já se e
 Os detalhes de cada subprojeto, estão descritos em suas respectivas pastas.
 
 #### Dependências
+ - JDK 1.8+
  - Docker
  - Docker Compose v1.16+
  - Angular CLI 1.6+
 
 #### Como levantar a aplicação
-Primeiramente, é necessário exportar uma variável de ambiente, que diz qual a versão da api será utilizada, atualmente está na versão 1.0.0:
+Primeiramente faremos as builds das aplicações:
 
-    $ export API_VERSION=1.0.0
-
-Agora faremos as builds das aplicações:
-
-    $ cd app && ng build && cd ..
+    $ cd client && ng build && cd ..
     $ cd api && ./mvnw clean package && cd ..
 
-Em seguida, levantamos os serviços:
+Em seguida, levantamos os containers:
 
     $ docker-compose up -d
 
@@ -33,4 +30,5 @@ O app estará acessivel através da porta **80** e a api na **3000**. Para acess
 |--|--|--|
 |analista@gmail.com|12345678|Analista de crédito|
 |captador@gmail.com|12345678|Captador de propostas|
+
 
