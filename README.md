@@ -1,11 +1,24 @@
 ## Desafio: Analise de Crédito
 
-### Arquitetura
-A aplicação esta dividida em dois subprojetos, o **client** desenvolvido com [Angular](https://angular.io), onde o usuário tem acesso e interage com as funcionalidades, e a **api** utilizando [Spring Boot](https://spring.io/), que fornece a autenticação e regras de negócio.
+## Arquitetura
+A aplicação esta dividida em dois subprojetos:
+-  **Client**: desenvolvido com [Angular](https://angular.io), onde o usuário tem acesso e interage com as funcionalidades.
+-  **Api**: utilizando [Spring Boot](https://spring.io/), que fornece a autenticação e regras de negócio.
+
 O banco de dados utilizado foi o [MariaDB](https://mariadb.org/),  onde já se encontra publicado (via [Amazon RDS](https://aws.amazon.com/pt/rds/)) e configurado no projeto.
 
-Os detalhes de cada subprojeto, estão descritos em suas respectivas pastas.
+### Client
+O front da aplicação foi implementado utilizando o **Angular 5**, e a geração do projeto, tanto como os módulos, componentes, serviços e geração de build foi utilizado o **Angular CLI**.
 
+### Api
+A api foi desenvolvida utilizando princípios do DDD e estruturada com uma [arquitetura em camadas](http://dddsample.sourceforge.net/architecture.html). Foi dado preferência à uma linguagem ubiqua no desenvolvimento do domínio, com base nas informações obtidas do negócio. Técnologias utilizadas:
+
+- Spring Boot.
+ - **JWT** para autenticação stateless.
+ - Controle de migrações do banco com [Flyway](https://flywaydb.org/).
+ - Geração de imagens docker juntamento com package da aplicação com [Dockerfile Maven](https://github.com/spotify/dockerfile-maven).
+
+## Testando
 #### Dependências
  - JDK 1.8+
  - Docker
@@ -30,5 +43,4 @@ O app estará acessivel através da porta **80** e a api na **3000**. Para acess
 |--|--|--|
 |analista@gmail.com|12345678|Analista de crédito|
 |captador@gmail.com|12345678|Captador de propostas|
-
 
