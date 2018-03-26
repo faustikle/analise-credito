@@ -11,7 +11,7 @@ import { AuthService } from './autenticacao/service/auth.service';
 import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
-
+import {AuthGuard} from './autenticacao/service/auth.guard';
 
 @NgModule({
   imports: [
@@ -28,8 +28,7 @@ import { SharedModule } from './shared/shared.module';
     AppComponent,
     PrincipalComponent
   ],
-  providers: [
-  ],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,17 +12,18 @@ export class AuthService {
 
   resource = environment.apiAuth + '/token';
   private storage: Storage = sessionStorage;
+  private jwtHelper: JwtHelper = new JwtHelper();
 
   constructor(
     private httpClient: HttpClient,
-    private jwtHelper: JwtHelper,
     private router: Router,
   ) { }
 
   logar(usuario: Usuario): Promise<any> {
-    return this.httpClient.post<string>(this.resource, usuario).toPromise()
+    return this.httpClient.post<any>(this.resource, usuario).toPromise()
       .then((response) => {
-        this.salvarStorage(response['token']);
+        this.salvarStorage(response.token);
+        this.router.navigate(['/']);
         Promise.resolve();
       })
       .catch(err => {
@@ -36,9 +37,8 @@ export class AuthService {
     return token && !this.jwtHelper.isTokenExpired(token);
   }
 
-  logout(): void {
-    this.removeData();
-
+  deslogar(): void {
+    this.limparSessionStorage();
     this.router.navigate([getRotaAutenticacao(AutenticacaoRoutesEnum.LOGIN)]);
   }
 
@@ -49,7 +49,7 @@ export class AuthService {
     this.storage.setItem('userid', payload.id);
     this.storage.setItem('useremail', payload.sub);
     this.storage.setItem('username', payload.nome);
-    this.storage.setItem('userpapel', payload.papel);
+    this.storage.setItem('userrole', payload.papel);
   }
 
   private decodeToken(token: string): any {
@@ -60,7 +60,7 @@ export class AuthService {
     return this.storage.getItem('token');
   }
 
-  private removeData(): void {
+  private limparSessionStorage(): void {
     this.storage.removeItem('token');
     this.storage.removeItem('username');
     this.storage.removeItem('useremail');

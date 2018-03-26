@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import {PropostaRoutes} from './proposta/proposta-routes.enum';
-import {PrincipalComponent} from './principal/principal.component';
-import {AutenticacaoRoutesEnum} from './autenticacao/autenticacao-routes.enum';
+import { PropostaRoutes}  from './proposta/proposta-routes.enum';
+import { PrincipalComponent } from './principal/principal.component';
+import { AutenticacaoRoutesEnum } from './autenticacao/autenticacao-routes.enum';
+import { AuthGuard } from './autenticacao/service/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: PrincipalComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: AutenticacaoRoutesEnum.AUTENTICACAO,
@@ -17,10 +19,12 @@ const routes: Routes = [
   {
     path: 'principal',
     component: PrincipalComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: PropostaRoutes.PROPOSTA,
     loadChildren: 'app/proposta/proposta.module#PropostaModule',
+    canActivate: [AuthGuard]
   }
 ];
 
