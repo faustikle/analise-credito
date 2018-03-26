@@ -33,6 +33,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
         try {
             if (token != null) {
+                token = token.replace("Bearer ", "");
                 email = jwtService.obterEmail(token);
             }
 
