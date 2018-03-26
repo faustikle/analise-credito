@@ -1,5 +1,7 @@
 package br.faustikle.desafio.api.domain.model.usuario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -18,11 +20,14 @@ public class Usuario {
     @NotNull
     @Email
     @Column(nullable = false, unique = true)
+    @JsonIgnore
     private String email;
 
     @NotNull
     @Size(min = 8, max = 64)
     @Column(nullable = false)
+
+    @JsonIgnore
     private String senha;
 
     @NotNull
