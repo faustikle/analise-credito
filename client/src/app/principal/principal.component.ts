@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { getRotaProposta, PropostaRoutesEnum } from '../proposta/proposta-routes.enum';
 
 @Component({
   selector: 'app-principal',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrincipalComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
+
 
   ngOnInit() {
   }
 
+  cadastrarProposta() {
+    this.router.navigate([getRotaProposta(PropostaRoutesEnum.CADASTRO)]);
+  }
 }
