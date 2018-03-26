@@ -13,21 +13,23 @@
     <div class="ui-g-12">
       <div class="ui-g-12 ui-md-4">
         <div class="ui-inputgroup-addon">
-          <label for="cpf">CPF</label>
+          <label for="cpf">CPF *</label>
           <input pInputText [textMask]="{mask: mascaraCpf}" type="text" id="cpf" formControlName="cpf"/>
+          <span *ngIf="formSubmetido && propostaForm.get('cpf').hasError('required')" class="error-form">Campo obrigatório</span>
         </div>
       </div>
 
       <div class="ui-g-12 ui-md-4">
         <div class="ui-inputgroup-addon">
-          <label for="nome">Nome</label>
+          <label for="nome">Nome *</label>
           <input pInputText type="text" id="nome" formControlName="nome"/>
+          <span *ngIf="formSubmetido && propostaForm.get('nome').hasError('required')" class="error-form">Campo obrigatório</span>
         </div>
       </div>
 
       <div class="ui-g-12 ui-md-4">
         <div class="ui-inputgroup-addon">
-          <label for="genero">Gênero</label>
+          <label for="genero">Gênero *</label>
           <p-dropdown id="genero" [style]="{'width': '100%', 'height': '34px'}" [options]="generos"
                       placeholder="Selecione" optionLabel="label" [showClear]="true" formControlName="genero"></p-dropdown>
         </div>
@@ -35,24 +37,27 @@
 
       <div class="ui-g-12 ui-md-4">
         <div class="ui-inputgroup-addon">
-          <label for="dataNascimento">Data de nascimento</label>
+          <label for="dataNascimento">Data de nascimento *</label>
           <p-calendar id="dataNascimento" dateFormat="yy/mm/dd" dataType="string"
                       [style]="{'width': '100%', 'height': '34px'}" formControlName="dataNascimento"
                       [locale]="configPtBrCalendar" [showButtonBar]="true" [yearNavigator]="true" yearRange="1868:2018"></p-calendar>
+          <span *ngIf="formSubmetido && propostaForm.get('dataNascimento').hasError('required')" class="error-form">Campo obrigatório</span>
         </div>
       </div>
 
       <div class="ui-g-12 ui-md-4">
         <div class="ui-inputgroup-addon">
-          <label for="profissao">Profissão</label>
+          <label for="profissao">Profissão *</label>
           <input pInputText type="text" id="profissao" formControlName="profissao"/>
+          <span *ngIf="formSubmetido && propostaForm.get('profissao').hasError('required')" class="error-form">Campo obrigatório</span>
         </div>
       </div>
 
       <div class="ui-g-12 ui-md-4">
         <div class="ui-inputgroup-addon">
-          <label for="rendaMensal">Renda Mensal</label>
+          <label for="rendaMensal">Renda Mensal *</label>
           <input pInputText type="text" id="rendaMensal" formControlName="rendaMensal"/>
+          <span *ngIf="formSubmetido && propostaForm.get('rendaMensal').hasError('required')" class="error-form">Campo obrigatório</span>
         </div>
       </div>
     </div>
@@ -60,43 +65,49 @@
     <div class="ui-g-12">
       <div class="ui-g-12 ui-md-4">
         <div class="ui-inputgroup-addon">
-          <label for="cep">CEP</label>
+          <label for="cep">CEP *</label>
           <input pInputText type="text" [textMask]="{mask: mascaraCep}" id="cep" formControlName="cep"/>
+          <span *ngIf="formSubmetido && propostaForm.get('cep').hasError('required')" class="error-form">Campo obrigatório</span>
         </div>
       </div>
 
       <div class="ui-g-12 ui-md-4">
         <div class="ui-inputgroup-addon">
-          <label for="cidade">Cidade</label>
+          <label for="cidade">Cidade *</label>
           <input pInputText type="text" id="cidade" formControlName="cidade"/>
+          <span *ngIf="formSubmetido && propostaForm.get('cidade').hasError('required')" class="error-form">Campo obrigatório</span>
         </div>
       </div>
 
       <div class="ui-g-12 ui-md-4">
         <div class="ui-inputgroup-addon">
-          <label for="estado">Estado</label>
+          <label for="estado">Estado *</label>
           <input pInputText type="text" [textMask]="{mask: mascaraUF}" id="estado" formControlName="estado"/>
+          <span *ngIf="formSubmetido && propostaForm.get('estado').hasError('required')" class="error-form">Campo obrigatório</span>
         </div>
       </div>
 
       <div class="ui-g-12 ui-md-4">
         <div class="ui-inputgroup-addon">
-          <label for="logradouro">Logradouro</label>
+          <label for="logradouro">Logradouro *</label>
           <input pInputText type="text" id="logradouro" formControlName="logradouro"/>
+          <span *ngIf="formSubmetido && propostaForm.get('logradouro').hasError('required')" class="error-form">Campo obrigatório</span>
         </div>
       </div>
 
       <div class="ui-g-12 ui-md-4">
         <div class="ui-inputgroup-addon">
-          <label for="numero">Número</label>
+          <label for="numero">Número *</label>
           <input pInputText type="text" id="numero" formControlName="numero"/>
+          <span *ngIf="formSubmetido && propostaForm.get('numero').hasError('required')" class="error-form">Campo obrigatório</span>
         </div>
       </div>
 
       <div class="ui-g-12 ui-md-4">
         <div class="ui-inputgroup-addon">
-          <label for="telefone">DDD + Telefone </label>
+          <label for="telefone">DDD + Telefone *</label>
           <input pInputText type="text" [textMask]="{mask: mascaraTelefone}" id="telefone" formControlName="telefone"/>
+          <span *ngIf="formSubmetido && propostaForm.get('telefone').hasError('required')" class="error-form">Campo obrigatório</span>
         </div>
       </div>
     </div>

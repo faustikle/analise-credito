@@ -20,6 +20,7 @@ export class CadastroComponent implements OnInit {
   mascaraCep = UtilMascara.getCep();
   mascaraUF = UtilMascara.getUF();
   propostaForm: PropostaForm = new PropostaForm();
+  formSubmetido = false;
   generos: SelectItem[] = [
     {
       label: 'Masculino',
@@ -55,7 +56,11 @@ export class CadastroComponent implements OnInit {
   }
 
   cadastrar() {
-    console.log(JSON.stringify(this.propostaForm.getCliente()));
+    this.formSubmetido = true;
+
+    if (!this.propostaForm.isValid()) {
+      return;
+    }
 
     this.loading = true;
 
