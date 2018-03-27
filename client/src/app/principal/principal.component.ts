@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { getRotaProposta, PropostaRoutesEnum } from '../proposta/proposta-routes.enum';
+import { AuthService } from '../autenticacao/service/auth.service';
 
 @Component({
   selector: 'app-principal',
@@ -11,7 +12,8 @@ import { getRotaProposta, PropostaRoutesEnum } from '../proposta/proposta-routes
 export class PrincipalComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
 
@@ -20,5 +22,9 @@ export class PrincipalComponent implements OnInit {
 
   cadastrarProposta() {
     this.router.navigate([getRotaProposta(PropostaRoutesEnum.CADASTRO)]);
+  }
+
+  analisarPropostas() {
+    // rota analise
   }
 }

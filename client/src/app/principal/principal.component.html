@@ -17,4 +17,13 @@
       <button pButton type="button" label="Acompanhar" class="ui-button-success" icon="fa-check"></button>
     </p-footer>
   </p-card>
+
+  <p-card title="Análise de Crédito" subtitle="Listagem" [style]="{width: '360px'}"
+          styleClass="ui-card-shadow card-principal">
+    <div class="info">Analise as propostas cadastradas e aprove ou negue a concessão de crédito.
+    </div>
+    <p-footer>
+      <button pButton type="button" label="Analisar" class="ui-button-success" icon="fa-check" (click)="analisarPropostas()"></button>
+    </p-footer>
+  </p-card>
 </div>

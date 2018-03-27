@@ -10,8 +10,6 @@ import { AutenticacaoRoutesEnum, getRotaAutenticacao } from '../autenticacao-rou
 @Injectable()
 export class AuthService {
 
-  usuario: Usuario;
-
   resource = environment.apiAuth + '/token';
   private storage: Storage = sessionStorage;
   private jwtHelper: JwtHelper = new JwtHelper();
