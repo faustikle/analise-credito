@@ -7,5 +7,5 @@ export const environment = {
   production: false,
   apiAuth: 'http://localhost:3000/api/auth',
   apiClientes: 'http://localhost:3000/api/clientes',
-  apiPropostas: 'http://localhost:3000/api/propostas',
+  apiPropostas: 'http://localhost:3000/api/propostas'
 };
