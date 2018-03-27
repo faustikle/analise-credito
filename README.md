@@ -15,7 +15,8 @@ A api foi desenvolvida utilizando princípios do DDD e estruturada com uma [arqu
 
 - Spring Boot.
  - **JWT** para autenticação stateless.
- - Controle de migrações do banco com [Flyway](https://flywaydb.org/).
+ - **Swagger** para documentação da api.
+ - Controle de migrações do banco com **Flyway**.
  - Geração de imagens docker juntamento com package da aplicação com [Dockerfile Maven](https://github.com/spotify/dockerfile-maven).
 
 ## Testando
@@ -23,12 +24,12 @@ A api foi desenvolvida utilizando princípios do DDD e estruturada com uma [arqu
  - JDK 1.8+
  - Docker
  - Docker Compose v1.16+
- - Angular CLI 1.6+
+ - NPM
 
 #### Como levantar a aplicação
 Primeiramente faremos as builds das aplicações:
 
-    $ cd client && ng build && cd ..
+    $ cd client && npm i && npm run build:prod && cd ..
     $ cd api && ./mvnw clean package && cd ..
 
 Em seguida, levantamos os containers:
@@ -37,10 +38,11 @@ Em seguida, levantamos os containers:
 
 O app estará acessivel através da porta **80** e a api na **3000**. Para acessar o app acesse [http://localhost](http://localhost).
 
+A aplicação também esta disponível (via [Amazon EC2](https://aws.amazon.com/pt/ec2/))  na web: http://34.217.58.191/
+
 #### Usuários pré-cadastrados
 
 | Email| Senha|Papél|
 |--|--|--|
 |analista@gmail.com|12345678|Analista de crédito|
 |captador@gmail.com|12345678|Captador de propostas|
-
