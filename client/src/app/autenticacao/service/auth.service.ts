@@ -23,7 +23,7 @@ export class AuthService {
     return this.httpClient.post<any>(this.resource, usuario).toPromise()
       .then((response) => {
         this.salvarStorage(response.token);
-        this.router.navigate(['/']);
+        window.location.href = '/';
         Promise.resolve();
       })
       .catch();

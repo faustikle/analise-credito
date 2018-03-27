@@ -117,7 +117,7 @@ export class ResultadoComponent implements OnInit, AfterViewChecked {
   }
 
   getCreditoFormatado(proposta: Proposta) {
-    if (!isNullOrUndefined(proposta.resultado)) {
+    if (!isNullOrUndefined(proposta.resultado) && !isNullOrUndefined(proposta.resultado.credito)) {
       return UtilMonetario.converterParaReal(proposta.resultado.credito.valor);
     }
 

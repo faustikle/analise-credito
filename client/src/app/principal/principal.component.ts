@@ -35,6 +35,6 @@ export class PrincipalComponent implements OnInit {
   }
 
   analisarProposta() {
-    this.router.navigate([getRotaProposta(PropostaRoutesEnum.ANALISE)]);
+    this.router.navigate(['proposta/analise']);
   }
 }

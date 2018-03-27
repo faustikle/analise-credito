@@ -9,8 +9,6 @@ import { getDescricaoPapelUsuario, Papel } from './autenticacao/enum/papel.enum'
 })
 export class AppComponent {
 
-  usuario: Usuario;
-
   constructor(
     public authService: AuthService
   ) {}
