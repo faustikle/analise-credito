@@ -26,9 +26,7 @@ export class AuthService {
         this.router.navigate(['/']);
         Promise.resolve();
       })
-      .catch(err => {
-        console.error(err);
-      });
+      .catch();
   }
 
   usuarioAutenticado(): boolean {
@@ -42,18 +40,26 @@ export class AuthService {
     this.router.navigate([getRotaAutenticacao(AutenticacaoRoutesEnum.LOGIN)]);
   }
 
+  getToken(): string {
+    return this.storage.getItem('token');
+  }
+
+  getPapel() {
+    return this.storage.getItem('userrole');
+  }
+
+  hasPapel(papel: string): boolean {
+    return papel === this.getPapel();
+  }
+
   private salvarStorage(token: string): void {
     this.storage.setItem('token', token);
 
     const payload = this.decodeToken(token);
-    this.storage.setItem('userid', payload.id);
     this.storage.setItem('useremail', payload.sub);
+    this.storage.setItem('userid', payload.id);
     this.storage.setItem('username', payload.nome);
     this.storage.setItem('userrole', payload.papel);
-  }
-
-  getToken(): string {
-    return this.storage.getItem('token');
   }
 
   getUsuarioLogado(): Usuario {
@@ -71,9 +77,9 @@ export class AuthService {
 
   private limparSessionStorage(): void {
     this.storage.removeItem('token');
-    this.storage.removeItem('username');
     this.storage.removeItem('useremail');
-    this.storage.removeItem('userrole');
     this.storage.removeItem('userid');
+    this.storage.removeItem('username');
+    this.storage.removeItem('userrole');
   }
 }

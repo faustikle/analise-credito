@@ -1,5 +1,5 @@
 <div class="ui-fluid ui-g-12">
-  <p-card title="Nova Proposta" subtitle="Cadastro" [style]="{width: '360px'}"
+  <p-card *ngIf="hasPermissao(papel.CAPTADOR_DE_PROPOSTA)" title="Nova Proposta" subtitle="Cadastro" [style]="{width: '360px'}"
           styleClass="ui-card-shadow card-principal">
     <div class="info">Realize o cadastro de uma nova proposta de cartão do nosso estabelecimento.
       Lembre-se de solicitar ao cliente, dados pessoais e seu endereço de correspondência.
@@ -9,21 +9,21 @@
     </p-footer>
   </p-card>
 
-  <p-card title="Resultados" subtitle="Listagem" [style]="{width: '360px'}"
+  <p-card *ngIf="hasPermissao(papel.CAPTADOR_DE_PROPOSTA)" title="Resultados" subtitle="Listagem" [style]="{width: '360px'}"
           styleClass="ui-card-shadow card-principal">
     <div class="info">Acompanhe o andamento ou resultado das propostas cadastradas por você.
     </div>
     <p-footer>
-      <button pButton type="button" label="Acompanhar" class="ui-button-success" icon="fa-check"></button>
+      <button pButton type="button" label="Acompanhar" class="ui-button-success" icon="fa-check" (click)="acompanharProposta()"></button>
     </p-footer>
   </p-card>
 
-  <p-card title="Análise de Crédito" subtitle="Listagem" [style]="{width: '360px'}"
+  <p-card *ngIf="hasPermissao(papel.ANALISTA_DE_CREDITO)" title="Análise de Crédito" subtitle="Listagem" [style]="{width: '360px'}"
           styleClass="ui-card-shadow card-principal">
     <div class="info">Analise as propostas cadastradas e aprove ou negue a concessão de crédito.
     </div>
     <p-footer>
-      <button pButton type="button" label="Analisar" class="ui-button-success" icon="fa-check" (click)="analisarPropostas()"></button>
+      <button pButton type="button" label="Analisar" class="ui-button-success" icon="fa-check" (click)="analisarProposta()"></button>
     </p-footer>
   </p-card>
 </div>

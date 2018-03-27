@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { CardModule} from 'primeng/card';
-import { ButtonModule } from 'primeng/button';
-import { CalendarModule, DropdownModule, InputTextModule } from 'primeng/primeng';
-import { TextMaskModule } from 'angular2-text-mask';
-import { ClienteService } from './service/cliente.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+import {CardModule} from 'primeng/card';
+import {ButtonModule} from 'primeng/button';
+import {CalendarModule, DataTableModule, DropdownModule, InputTextModule} from 'primeng/primeng';
+import {TextMaskModule} from 'angular2-text-mask';
+import {ClienteService} from './service/cliente.service';
+import {PropostaService} from './service/proposta.service';
+import { AlertComponent } from './modal/alert/alert.component';
+import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
   imports: [
@@ -19,6 +22,8 @@ import { ClienteService } from './service/cliente.service';
     DropdownModule,
     CalendarModule,
     TextMaskModule,
+    DialogModule,
+    DataTableModule
   ],
   exports: [
     FormsModule,
@@ -28,9 +33,12 @@ import { ClienteService } from './service/cliente.service';
     InputTextModule,
     DropdownModule,
     CalendarModule,
-    TextMaskModule
+    TextMaskModule,
+    DialogModule,
+    AlertComponent,
+    DataTableModule
   ],
-  providers: [ClienteService],
-  declarations: []
+  providers: [ClienteService, PropostaService],
+  declarations: [AlertComponent]
 })
 export class SharedModule { }
