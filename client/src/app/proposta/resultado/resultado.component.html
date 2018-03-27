@@ -1,3 +1,87 @@
-<p>
-  resultado works!
-</p>
+<div class="card card-proposta">
+  <div class="ui-g-12">
+    <div class="card-body">
+      <div class="alert alert-info" role="alert">
+        <strong>Pesquisa de Propostas.</strong><br>Visualize o andamento das propostas.
+      </div>
+      <button pButton type="button" (click)="navegarTelaInicial()" label="Voltar"></button>
+    </div>
+  </div>
+
+  <div class="ui-g-12">
+    <div class="ui-g-12 ui-md-3">
+      <div class="ui-inputgroup-addon">
+        <label for="cpf">CPF</label>
+        <input pInputText [textMask]="{mask: mascaraCpf}" type="text" id="cpf" [(ngModel)]="cpf"/>
+      </div>
+    </div>
+
+    <div class="ui-g-12 ui-md-3">
+      <div class="ui-inputgroup-addon">
+        <label for="status">Status</label>
+        <p-dropdown id="status" [style]="{'width': '100%', 'height': '34px'}" [options]="statusOptions"
+                    [(ngModel)]="status" [ngModelOptions]="{standalone: true}"
+                    placeholder="Selecione" optionLabel="label"></p-dropdown>
+      </div>
+    </div>
+
+    <div class="ui-g-12 ui-md-4">
+      <div class="ui-inputgroup-addon">
+        <label></label>
+        <button style="float: left; margin-top: 8px; height: 33px" pButton type="submit"
+                [label]=" loading ? 'Pesquisando' : 'Pesquisar'"
+                [disabled]="loading" class="ui-button-success" (click)="renovarDataTable(); pesquisar()"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui-g-12" *ngIf="!!propostas.length && exibirDataTable">
+    <p-dataTable #dataTable
+                 [value]="propostas"
+                 [responsive]="true"
+                 [loading]="loading"
+                 loadingIcon="fa-spinner"
+                 emptyMessage="Nenhuma proposta localizada"
+                 [paginator]="true"
+                 [rows]="propostasPorPagina"
+                 [lazy]="true"
+                 [totalRecords]="totalPropostas"
+                 (onLazyLoad)="changePage($event)"
+                 [resizableColumns]="true"
+                 [rowHover]="true">
+      <p-column field="id" header="Cód"></p-column>
+
+      <p-column header="Status">
+        <ng-template let-proposta="rowData" pTemplate="body">
+          <span class="ui-cell-data">{{ getDescricaoStatus(proposta.status) }}</span>
+        </ng-template>
+      </p-column>
+
+      <p-column header="Crédito">
+        <ng-template let-proposta="rowData" pTemplate="body">
+          <span class="ui-cell-data">{{ getCreditoFormatado(proposta) }}</span>
+        </ng-template>
+      </p-column>
+
+      <p-column header="CPF">
+        <ng-template let-proposta="rowData" pTemplate="body">
+          <span class="ui-cell-data">{{ getCpfFormatado(proposta.cliente.dadoPessoal.cpf.numero) }}</span>
+        </ng-template>
+      </p-column>
+
+      <p-column header="Nome Cliente">
+        <ng-template let-proposta="rowData" pTemplate="body">
+          <span class="ui-cell-data">{{ proposta.cliente.dadoPessoal.nome }}</span>
+        </ng-template>
+      </p-column>
+
+      <p-column header="Renda Mensal">
+        <ng-template let-proposta="rowData" pTemplate="body">
+          <span class="ui-cell-data">{{ getRendaFormatada(proposta.cliente.dadoFinanceiro.rendaMensal) }}</span>
+        </ng-template>
+      </p-column>
+    </p-dataTable>
+  </div>
+</div>
+
+<app-alert #modalAlerta></app-alert>

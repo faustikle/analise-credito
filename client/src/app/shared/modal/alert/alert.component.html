@@ -1,0 +1,23 @@
+<p-dialog #dialog
+          *ngIf="!!titulo && !!descricao"
+          [header]="titulo"
+          [(visible)]="visible"
+          [resizable]="true"
+          [modal]="true"
+          [closable]="false"
+          [closeOnEscape]="false"
+          [style]="{'max-width': '600px', 'max-height': '600px'}">
+  <div>
+    <div class="ui-g-12" >
+      <div class="ui-g-12 ui-md-12">
+        <strong>{{ descricao }}</strong>
+      </div>
+    </div>
+
+    <div class="ui-g-12">
+      <div class="ui-sm-12 ui-md-3 pull-right">
+        <button pButton (click)="close()" type="button" icon="fa-times" label="Ok"></button>
+      </div>
+    </div>
+  </div>
+</p-dialog>

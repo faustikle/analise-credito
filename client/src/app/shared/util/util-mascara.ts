@@ -1,3 +1,5 @@
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+
 export class UtilMascara {
   public static getCpf(): Array<string|RegExp> {
     return [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
@@ -25,5 +27,14 @@ export class UtilMascara {
 
   public static getUF(): Array<string|RegExp> {
     return [/\D/, /\D/];
+  }
+
+  public static getValorReal(): Array<string|RegExp> {
+    return createNumberMask({
+      prefix: 'R$',
+      allowDecimal: true,
+      decimalSymbol: ',',
+      thousandsSeparatorSymbol: '.'
+    });
   }
 }
