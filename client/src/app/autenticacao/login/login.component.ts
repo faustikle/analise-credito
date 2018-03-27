@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { LoginForm } from './login.form';
 import { AuthService } from '../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +16,14 @@ export class LoginComponent implements OnInit {
   formSubmetido = false;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    if (this.authService.usuarioAutenticado) {
+      this.router.navigate(['/']);
+    }
   }
 
   async logar(): Promise<void> {

@@ -10,6 +10,8 @@ import { AutenticacaoRoutesEnum, getRotaAutenticacao } from '../autenticacao-rou
 @Injectable()
 export class AuthService {
 
+  usuario: Usuario;
+
   resource = environment.apiAuth + '/token';
   private storage: Storage = sessionStorage;
   private jwtHelper: JwtHelper = new JwtHelper();
@@ -56,6 +58,15 @@ export class AuthService {
     return this.storage.getItem('token');
   }
 
+  getUsuarioLogado(): Usuario {
+    return {
+      id: parseInt(this.storage.getItem('userid'), 10),
+      nome: this.storage.getItem('username'),
+      papel: this.storage.getItem('userrole'),
+      email: this.storage.getItem('useremail'),
+    };
+  }
+
   private decodeToken(token: string): any {
     return this.jwtHelper.decodeToken(token);
   }
@@ -64,7 +75,7 @@ export class AuthService {
     this.storage.removeItem('token');
     this.storage.removeItem('username');
     this.storage.removeItem('useremail');
-    this.storage.removeItem('userpapel');
+    this.storage.removeItem('userrole');
     this.storage.removeItem('userid');
   }
 }

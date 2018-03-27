@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './autenticacao/service/auth.service';
+import { Usuario } from './autenticacao/model/usuario.model';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,12 @@ import { AuthService } from './autenticacao/service/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  usuario: Usuario;
+
   constructor(
-    private authService: AuthService
-  ) {}
+    public authService: AuthService
+  ) { }
 
   usuarioLogado() {
     return this.authService.usuarioAutenticado();
