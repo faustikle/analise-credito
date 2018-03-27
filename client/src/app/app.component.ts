@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from './autenticacao/service/auth.service';
-import { Usuario } from './autenticacao/model/usuario.model';
+import { getDescricaoPapelUsuario, Papel } from './autenticacao/enum/papel.enum';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,11 @@ export class AppComponent {
 
   constructor(
     public authService: AuthService
-  ) { }
+  ) {}
+
+  getPapelUsuario() {
+    return getDescricaoPapelUsuario(this.authService.getPapel());
+  }
 
   usuarioLogado() {
     return this.authService.usuarioAutenticado();

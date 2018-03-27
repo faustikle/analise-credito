@@ -1,6 +1,6 @@
 <div *ngIf="usuarioLogado()">
   <div class="topbar d-flex justify-content-end align-items-center">
-    <span class="mr-auto ml-3">Perfil: {{ authService.getUsuarioLogado().papel == 'CAPTADOR_DE_PROPOSTA' ? 'Captador de Proposta' : 'Analista de Crédito' }}</span>
+    <span class="mr-auto ml-3">Perfil: {{ getPapelUsuario() }}</span>
     <span class="mr-2">Bem vindo, {{ authService.getUsuarioLogado().nome }}</span>
     <button pButton type="button" (click)="deslogar()" icon="fa-close" label="Sair" class="ui-button-warning mr-3"></button>
   </div>
