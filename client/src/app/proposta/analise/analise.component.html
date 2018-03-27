@@ -1,0 +1,87 @@
+<div class="card card-proposta">
+  <div class="ui-g-12">
+    <div class="card-body">
+      <div class="alert alert-info" role="alert">
+        <strong>Análise de Propostas.</strong><br>Aprove ou negue propostas de acordo com sua análise.
+      </div>
+      <button pButton type="button" (click)="navegarTelaInicial()" label="Voltar"></button>
+    </div>
+  </div>
+
+  <div class="ui-g-12">
+    <div class="ui-g-12 ui-md-4">
+      <div class="ui-inputgroup-addon">
+        <label></label>
+        <button style="float: left; margin-top: 8px; height: 33px" pButton type="submit"
+                [label]=" loading ? 'Atualizando' : 'Atualizar Lista'"
+                [disabled]="loading" class="ui-button-success" (click)="renovarDataTable(); pesquisar()"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui-g-12" *ngIf="!!propostas.length && exibirDataTable">
+    <p-dataTable #dataTable
+                 [value]="propostas"
+                 [responsive]="true"
+                 [loading]="loading"
+                 loadingIcon="fa-spinner"
+                 emptyMessage="Nenhuma proposta localizada"
+                 [paginator]="true"
+                 [rows]="propostasPorPagina"
+                 [lazy]="true"
+                 [totalRecords]="totalPropostas"
+                 (onLazyLoad)="changePage($event)"
+                 [resizableColumns]="true"
+                 [rowHover]="true">
+      <p-column field="id" header="Cód"></p-column>
+
+      <p-column header="Status">
+        <ng-template let-proposta="rowData" pTemplate="body">
+          <span class="ui-cell-data">{{ getDescricaoStatus(proposta.status) }}</span>
+        </ng-template>
+      </p-column>
+
+      <p-column header="CPF">
+        <ng-template let-proposta="rowData" pTemplate="body">
+          <span class="ui-cell-data">{{ getCpfFormatado(proposta.cliente.dadoPessoal.cpf.numero) }}</span>
+        </ng-template>
+      </p-column>
+
+      <p-column header="Nome Cliente">
+        <ng-template let-proposta="rowData" pTemplate="body">
+          <span class="ui-cell-data">{{ proposta.cliente.dadoPessoal.nome }}</span>
+        </ng-template>
+      </p-column>
+
+      <p-column header="Telefone">
+        <ng-template let-proposta="rowData" pTemplate="body">
+          <span class="ui-cell-data">{{ proposta.cliente.dadoPessoal.telefone }}</span>
+        </ng-template>
+      </p-column>
+
+      <p-column header="Renda Mensal">
+        <ng-template let-proposta="rowData" pTemplate="body">
+          <span class="ui-cell-data">{{ getRendaFormatada(proposta.cliente.dadoFinanceiro.rendaMensal) }}</span>
+        </ng-template>
+      </p-column>
+
+      <p-column header="Profissão">
+        <ng-template let-proposta="rowData" pTemplate="body">
+          <span class="ui-cell-data">{{ proposta.cliente.dadoFinanceiro.profissao }}</span>
+        </ng-template>
+      </p-column>
+
+      <p-column header="Aprovar/Negar">
+        <ng-template let-proposta="rowData" pTemplate="body">
+          <button pButton class="ui-button-success" icon="fa-check" label="Aprovar"
+                  [disabled]="processando" (click)="aprovarProposta(proposta)"></button>
+          <button pButton class="ui-button-danger" icon="fa-ban" [disabled]="processando"
+                  label="Rejeitar" (click)="negarProposta(proposta)"></button>
+        </ng-template>
+      </p-column>
+    </p-dataTable>
+  </div>
+</div>
+
+<app-aprovacao-credito #modalAprovacaoCredito (emitExit)="propostaAprovada($event)"
+                       (emitCancelar)="cancelarAprovacao($event)"></app-aprovacao-credito>

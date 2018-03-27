@@ -80,8 +80,9 @@ export class PropostaForm extends FormGroup {
       },
       dadoFinanceiro: {
         profissao: this.get('profissao').value,
-        rendaMensal: this.get('rendaMensal').value,
+        rendaMensal: this.get('rendaMensal').value.replace(new RegExp(/['R$ \.']/, 'g'), '').replace(',', '.'),
       }
     };
   }
 }
+

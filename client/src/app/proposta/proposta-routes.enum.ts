@@ -1,7 +1,8 @@
 export enum PropostaRoutesEnum {
   PROPOSTA = 'proposta',
   CADASTRO = 'cadastro',
-  RESULTADO = 'resultado'
+  RESULTADO = 'resultado',
+  ANALISE = 'analise',
 }
 
 export function getRotaProposta(rota: string): string {
@@ -9,6 +10,7 @@ export function getRotaProposta(rota: string): string {
 
   caminho[PropostaRoutesEnum.CADASTRO] = PropostaRoutesEnum.PROPOSTA + '/' + PropostaRoutesEnum.CADASTRO;
   caminho[PropostaRoutesEnum.RESULTADO] = PropostaRoutesEnum.PROPOSTA + '/' + PropostaRoutesEnum.RESULTADO;
+  caminho[PropostaRoutesEnum.ANALISE] = PropostaRoutesEnum.PROPOSTA + '/' + PropostaRoutesEnum.ANALISE;
 
   return caminho[rota];
 }

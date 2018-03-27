@@ -5,7 +5,7 @@
         <div class="alert alert-info" role="alert">
           <strong>Cadastro de Proposta.</strong><br>Solicite, gentilmente, os dados pessoais e de endereço do cliente.
         </div>
-      <button pButton type="button" (click)="navegarTelaInicial()" label="Voltar"></button>
+        <button pButton type="button" (click)="navegarTelaInicial()" label="Voltar"></button>
       </div>
 
     </div>
@@ -56,7 +56,7 @@
       <div class="ui-g-12 ui-md-4">
         <div class="ui-inputgroup-addon">
           <label for="rendaMensal">Renda Mensal *</label>
-          <input pInputText type="text" id="rendaMensal" formControlName="rendaMensal"/>
+          <input pInputText type="text" id="rendaMensal" formControlName="rendaMensal" [textMask]="{mask: mascaraValor}"/>
           <span *ngIf="formSubmetido && propostaForm.get('rendaMensal').hasError('required')" class="error-form">Campo obrigatório</span>
         </div>
       </div>
@@ -119,3 +119,5 @@
     </div>
   </div>
 </form>
+
+<app-alert #modalAlerta (emitExit)="finalizarCadastro($event)"></app-alert>

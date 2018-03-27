@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 
 import { PropostaForm } from './proposta.form';
 import { SelectItem } from 'primeng/api';
@@ -6,6 +6,10 @@ import { Router } from '@angular/router';
 import { UtilMascara } from '../../shared/util/util-mascara';
 import { ClienteService } from '../../shared/service/cliente.service';
 import { Cliente } from '../../shared/model/cliente/cliente';
+import { PropostaService } from '../../shared/service/proposta.service';
+import { Proposta } from '../model/proposta';
+import { AlertComponent } from '../../shared/modal/alert/alert.component';
+import { getDescricaoStatusProposta } from '../enum/status.enum';
 
 @Component({
   selector: 'app-cadastro',
@@ -14,13 +18,16 @@ import { Cliente } from '../../shared/model/cliente/cliente';
 })
 export class CadastroComponent implements OnInit {
 
+  @ViewChild('modalAlerta') modalAlerta: AlertComponent;
+
   loading = false;
+  formSubmetido = false;
   mascaraCpf = UtilMascara.getCpf();
   mascaraTelefone = UtilMascara.getPhone();
   mascaraCep = UtilMascara.getCep();
   mascaraUF = UtilMascara.getUF();
+  mascaraValor = UtilMascara.getValorReal();
   propostaForm: PropostaForm = new PropostaForm();
-  formSubmetido = false;
   generos: SelectItem[] = [
     {
       label: 'Masculino',
@@ -45,7 +52,8 @@ export class CadastroComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private clienteService: ClienteService
+    private clienteService: ClienteService,
+    private propostaService: PropostaService
   ) { }
 
   ngOnInit() {
@@ -66,13 +74,25 @@ export class CadastroComponent implements OnInit {
 
     this.clienteService.salvar(this.propostaForm.getCliente()).subscribe(
       (cliente: Cliente) => {
-        console.log(1, cliente);
-        this.loading = false;
+        this.propostaService.solicitar(cliente.id).subscribe(
+          (proposta: Proposta) => {
+            this.modalAlerta.showDialog('Proposta cadastrada!', 'Status: ' + getDescricaoStatusProposta(proposta.status));
+            this.loading = false;
+          },
+          (erro) => {
+            this.loading = false;
+          }
+        );
       },
       (erro) => {
-        console.log(0, erro);
         this.loading = false;
       }
     );
+  }
+
+  finalizarCadastro(event: boolean) {
+    if (event) {
+      this.navegarTelaInicial();
+    }
   }
 }

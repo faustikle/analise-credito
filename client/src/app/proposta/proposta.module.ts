@@ -5,9 +5,10 @@ import { RouterModule } from '@angular/router';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { ResultadoComponent } from './resultado/resultado.component';
 import { PropostaRoutingModule } from './proposta-routing.module';
-import { PropostaComponent } from './proposta.component';
-import { SharedModule } from '../shared/shared.module';
-import { PropostaService } from './service/proposta.service';
+import {PropostaComponent} from './proposta.component';
+import {SharedModule} from '../shared/shared.module';
+import { AnaliseComponent } from './analise/analise.component';
+import { AprovacaoCreditoComponent } from './modal/aprovacao-credito/aprovacao-credito.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,6 @@ import { PropostaService } from './service/proposta.service';
     SharedModule,
     PropostaRoutingModule
   ],
-  providers: [PropostaService],
-  declarations: [PropostaComponent, CadastroComponent, ResultadoComponent]
+  declarations: [PropostaComponent, CadastroComponent, ResultadoComponent, AnaliseComponent, AprovacaoCreditoComponent]
 })
 export class PropostaModule { }
